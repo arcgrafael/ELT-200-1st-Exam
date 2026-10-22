@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Read Between the Waves: A Literary Analysis Guide</title>
+<meta name="description" content="A learner's guide to literary analysis, with elements, a worked example, a quiz, and an analysis checklist.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ocean-deep: #0d2b45;
+    --ocean-mid: #1f5673;
+    --straw-red: #b3202a;
+    --sunlit: #f0b429;
+    --parchment: #f7ecd6;
+    --ink: #1c1a17;
+    --focus: #f0b429;
+    --radius: 6px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --parchment: #13243a;
+      --ink: #f3ead8;
+      --ocean-deep: #f7ecd6;
+      --ocean-mid: #9cc7dc;
+      --straw-red: #f07a7f;
+      --sunlit: #f0b429;
+      --focus: #f0b429;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    font-family: "Source Serif 4", Georgia, serif;
+    font-size: 1.0625rem;
+    line-height: 1.7;
+    color: var(--ink);
+    background: var(--parchment);
+  }
+
+  h1, h2, h3, .brand, .nav-links a {
+    font-family: "Alfa Slab One", Georgia, serif;
+    font-weight: 400;
+    line-height: 1.15;
+    color: var(--ocean-deep);
+  }
+
+  h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); margin: 0 0 0.5rem; }
+  h2 { font-size: clamp(1.7rem, 3.5vw, 2.3rem); margin: 0 0 1rem; }
+  h3 { font-size: 1.25rem; margin: 0 0 0.4rem; }
+
+  p { max-width: 68ch; margin: 0 0 1rem; }
+
+  a { color: var(--straw-red); }
+
+  :focus-visible {
+    outline: 3px solid var(--focus);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background: var(--ocean-deep);
+    color: var(--parchment);
+    padding: 0.6rem 1rem;
+    z-index: 100;
+  }
+  .skip-link:focus { left: 1rem; top: 1rem; }
+
+  /* Header and navigation */
+  header.site-header {
+    background: var(--ocean-deep);
+    color: var(--parchment);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 4px solid var(--straw-red);
+  }
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0.9rem 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .brand {
+    color: var(--sunlit);
+    font-size: 1.15rem;
+    text-decoration: none;
+  }
+  .nav-links {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-links a {
+    color: var(--parchment);
+    font-family: "Source Serif 4", Georgia, serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    padding: 0.25rem 0.1rem;
+    border-bottom: 2px solid transparent;
+  }
+  .nav-links a:hover,
+  .nav-links a[aria-current="true"] {
+    border-bottom-color: var(--sunlit);
+  }
+
+  main { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
+
+  section {
+    padding: 3.5rem 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--ocean-deep) 18%, transparent);
+  }
+  section:last-of-type { border-bottom: none; }
+
+  /* Hero: a wanted-poster frame */
+  .hero {
+    padding: 3rem 0 3.5rem;
+  }
+  .poster {
+    background: color-mix(in srgb, var(--parchment) 88%, #fff);
+    border: 3px solid var(--ink);
+    border-radius: var(--radius);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    box-shadow: 8px 8px 0 var(--ocean-deep);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  @media (min-width: 760px) {
+    .poster { grid-template-columns: 1.6fr 1fr; align-items: center; }
+  }
+  .poster .lede { font-size: 1.2rem; }
+  .poster-side {
+    border-left: 3px solid var(--straw-red);
+    padding-left: 1.25rem;
+  }
+  .poster-side dt {
+    font-family: "Alfa Slab One", Georgia, serif;
+    color: var(--straw-red);
+    font-size: 0.95rem;
+  }
+  .poster-side dd { margin: 0 0 0.9rem; }
+
+  .wave-band {
+    display: block;
+    width: 100%;
+    height: 56px;
+    margin-top: 2rem;
+  }
+
+  .btn {
+    display: inline-block;
+    font-family: "Source Serif 4", Georgia, serif;
+    font-weight: 700;
+    background: var(--straw-red);
+    color: #fff;
+    padding: 0.7rem 1.3rem;
+    border-radius: var(--radius);
+    text-decoration: none;
+    border: 2px solid var(--ink);
+  }
+  .btn:hover { background: var(--ink); }
+
+  /* Concept block */
+  .two-col {
+    display: grid;
+    gap: 2rem;
+  }
+  @media (min-width: 760px) {
+    .two-col { grid-template-columns: 1fr 1fr; }
+  }
+  .claim-box {
+    background: var(--ocean-deep);
+    color: var(--parchment);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+  }
+  .claim-box h3 { color: var(--sunlit); }
+  .claim-box p:last-child { margin-bottom: 0; }
+
+  /* Elements accordion */
+  details.element {
+    background: color-mix(in srgb, var(--parchment) 92%, #fff);
+    border: 2px solid var(--ocean-deep);
+    border-radius: var(--radius);
+    margin-bottom: 0.75rem;
+  }
+  details.element summary {
+    cursor: pointer;
+    padding: 0.9rem 1.1rem;
+    font-family: "Alfa Slab One", Georgia, serif;
+    color: var(--ocean-deep);
+    font-size: 1.1rem;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+  }
+  details.element summary::-webkit-details-marker { display: none; }
+  details.element summary::after {
+    content: "+";
+    font-family: "Alfa Slab One", Georgia, serif;
+    color: var(--straw-red);
+    font-size: 1.4rem;
+  }
+  details.element[open] summary::after { content: "\2212"; }
+  details.element summary:focus-visible { outline-offset: -3px; }
+  details.element .body {
+    padding: 0 1.1rem 1.1rem;
+    border-top: 1px solid color-mix(in srgb, var(--ocean-deep) 20%, transparent);
+    padding-top: 0.9rem;
+  }
+  details.element .body p:last-child { margin-bottom: 0; }
+
+  /* Worked example */
+  .example-meta {
+    font-style: italic;
+    color: var(--ocean-mid);
+    margin-bottom: 1.5rem;
+  }
+  .example blockquote {
+    margin: 1.25rem 0;
+    padding: 0.9rem 1.2rem;
+    border-left: 5px solid var(--sunlit);
+    background: color-mix(in srgb, var(--sunlit) 14%, transparent);
+  }
+  .example blockquote p { margin: 0; }
+  .prep {
+    display: grid;
+    gap: 1rem;
+    margin: 1.5rem 0;
+  }
+  @media (min-width: 760px) {
+    .prep { grid-template-columns: repeat(3, 1fr); }
+  }
+  .prep > div {
+    border-top: 4px solid var(--ocean-mid);
+    padding-top: 0.75rem;
+  }
+
+  /* Quiz */
+  .quiz-card {
+    background: color-mix(in srgb, var(--parchment) 92%, #fff);
+    border: 2px solid var(--ink);
+    border-radius: var(--radius);
+    padding: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+  .quiz-card fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+  .quiz-card legend {
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    padding: 0;
+    font-size: 1.05rem;
+  }
+  .choice {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    padding: 0.45rem 0.5rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .choice:hover { background: color-mix(in srgb, var(--ocean-mid) 12%, transparent); }
+  .choice input { margin-top: 0.35rem; accent-color: var(--straw-red); }
+  .feedback {
+    min-height: 1.6em;
+    margin: 0.6rem 0 0;
+    font-weight: 600;
+  }
+  .feedback.correct { color: var(--ocean-mid); }
+  .feedback.incorrect { color: var(--straw-red); }
+
+  .btn-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; margin-top: 1rem; }
+  .btn-ghost {
+    background: transparent;
+    color: var(--ocean-deep);
+    border: 2px solid var(--ocean-deep);
+    font: inherit;
+    font-weight: 700;
+    padding: 0.65rem 1.2rem;
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .btn-ghost:hover { background: var(--ocean-deep); color: var(--parchment); }
+  .score-line { font-weight: 700; font-size: 1.1rem; }
+
+  /* Checklist */
+  .checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.6rem;
+  }
+  .checklist label {
+    display: flex;
+    gap: 0.7rem;
+    align-items: flex-start;
+    padding: 0.7rem 0.9rem;
+    background: color-mix(in srgb, var(--parchment) 92%, #fff);
+    border: 1px solid color-mix(in srgb, var(--ocean-deep) 25%, transparent);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+  .checklist input { margin-top: 0.4rem; width: 1.1rem; height: 1.1rem; accent-color: var(--straw-red); }
+  .checklist input:checked + span { text-decoration: line-through; opacity: 0.7; }
+  .progress-wrap { margin-bottom: 1rem; }
+  .progress-label { font-weight: 700; margin-bottom: 0.35rem; }
+  progress {
+    width: 100%;
+    height: 14px;
+    accent-color: var(--straw-red);
+  }
+
+  /* Footer */
+  footer {
+    background: var(--ocean-deep);
+    color: var(--parchment);
+    margin-top: 2rem;
+  }
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2rem 1.25rem;
+    font-size: 0.95rem;
+  }
+  footer p { margin: 0; max-width: none; }
+
+  /* Subtle reveal on load (one orchestrated moment) */
+  @media (prefers-reduced-motion: no-preference) {
+    .poster { animation: sail-in 0.7s ease-out both; }
+    @keyframes sail-in {
+      from { opacity: 0; transform: translateY(14px); }
+      to { opacity: 1; transform: none; }
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation: none !important; transition: none !important; }
+  }
+
+  @media (max-width: 560px) {
+    .header-inner { justify-content: center; text-align: center; }
+    .nav-links { justify-content: center; }
+    .poster { box-shadow: 4px 4px 0 var(--ocean-deep); }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#home">Read Between the Waves</a>
+    <nav aria-label="Main">
+      <ul class="nav-links">
+        <li><a href="#what">What it is</a></li>
+        <li><a href="#elements">Elements</a></li>
+        <li><a href="#example">Worked example</a></li>
+        <li><a href="#practice">Quiz</a></li>
+        <li><a href="#checklist">Checklist</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <section id="home" class="hero" aria-labelledby="hero-title">
+    <div class="poster">
+      <div>
+        <h1 id="hero-title">Read Between the Waves</h1>
+        <p class="lede">Literary analysis is the practice of making a clear, arguable claim about a text and backing it up with evidence from that text. This guide walks you through the core elements, shows the method on a real novel, and lets you test yourself along the way.</p>
+        <p><a class="btn" href="#what">Start the voyage</a></p>
+      </div>
+      <dl class="poster-side">
+        <dt>Crew</dt>
+        <dd>Readers who want to explain what a text means, and why.</dd>
+        <dt>Bounty</dt>
+        <dd>A thesis supported by evidence, not a plot summary.</dd>
+        <dt>Route</dt>
+        <dd>Read, notice, interpret, argue, revise.</dd>
+      </dl>
+    </div>
+    <svg class="wave-band" viewBox="0 0 1200 56" preserveAspectRatio="none" role="img" aria-label="Decorative wave pattern">
+      <path d="M0 28 Q 37.5 0 75 28 T150 28 T225 28 T300 28 T375 28 T450 28 T525 28 T600 28 T675 28 T750 28 T825 28 T900 28 T975 28 T1050 28 T1125 28 T1200 28 V56 H0 Z" fill="#1f5673"/>
+      <path d="M0 40 Q 37.5 16 75 40 T150 40 T225 40 T300 40 T375 40 T450 40 T525 40 T600 40 T675 40 T750 40 T825 40 T900 40 T975 40 T1050 40 T1125 40 T1200 40 V56 H0 Z" fill="#0d2b45"/>
+    </svg>
+  </section>
+
+  <section id="what" aria-labelledby="what-title">
+    <h2 id="what-title">What literary analysis is</h2>
+    <div class="two-col">
+      <div>
+        <p>A plot summary tells a reader what happens. A literary analysis explains how and why the text makes its effects. The difference is the claim: an analysis takes a position that another reasonable reader could question, then shows how specific words, scenes, and structures support it.</p>
+        <p>Most strong analytical paragraphs follow a simple pattern. State the point, quote or describe the evidence, then explain how that evidence supports the point. Many teachers call this claim, evidence, analysis.</p>
+      </div>
+      <aside class="claim-box" aria-label="Example of a weak and strong thesis">
+        <h3>Weak thesis</h3>
+        <p>The Old Man and the Sea is about an old fisherman who catches a big fish.</p>
+        <h3>Stronger thesis</h3>
+        <p>In The Old Man and the Sea, Hemingway suggests that dignity matters more than victory, because Santiago’s worth is shown in how he endures defeat rather than in the marlin he brings home.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section id="elements" aria-labelledby="elements-title">
+    <h2 id="elements-title">Key elements to look for</h2>
+    <p>Open any element to see a short definition and what to look for when you read. You do not need every element in every essay. Choose the ones that serve your claim.</p>
+
+    <details class="element">
+      <summary>Theme</summary>
+      <div class="body">
+        <p>The central idea or message a text communicates about life, people, or society. A theme is usually a full statement, not a single word. “Love” is a topic; “love can survive loss but not indifference” is a theme.</p>
+      </div>
+    </details>
+
+    <details class="element">
+      <summary>Character</summary>
+      <div class="body">
+        <p>The people, animals, or beings who act in a story. Look at what characters say, what they do, how others react to them, and how they change. Static characters stay the same; dynamic characters change in response to events.</p>
+      </div>
+    </details>
+
+    <details class="element">
+      <summary>Setting</summary>
+      <div class="body">
+        <p>The time and place of a story, including its social and emotional atmosphere. Setting often shapes character and conflict. A remote village and a crowded city can produce very different pressures on the same person.</p>
+      </div>
+    </details>
+
+    <details class="element">
+      <summary>Plot structure</summary>
+      <div class="body">
+        <p>The sequence of events, usually organized as exposition, rising action, climax, falling action, and resolution. Analysts often ask why a writer delays the climax, or why a resolution feels incomplete.</p>
+      </div>
+    </details>
+
+    <details class="element">
+      <summary>Point of view</summary>
+      <div class="body">
+        <p>The perspective from which the story is told. In first person, the narrator uses “I” and can only report what they know or perceive. In third-person limited, the narrator follows one character’s thoughts. In third-person omniscient, the narrator knows all characters’ thoughts.</p>
+      </div>
+    </details>
+
+    <details class="element">
+      <summary>Symbolism</summary>
+      <div class="body">
+        <p>When a concrete object, place, or image represents a larger idea. A symbol earns its meaning through repetition and context. Ask whether the text keeps returning to the object and whether the meaning changes over time.</p>
+      </div>
+    </details>
+
+    <details class="element">
+      <summary>Motif</summary>
+      <div class="body">
+        <p>A recurring image, phrase, or pattern that develops a theme. Unlike a single symbol, a motif often appears in many forms throughout the text. Tracking motifs helps you see how a writer builds meaning gradually.</p>
+      </div>
+    </details>
+
+    <details class="element">
+      <summary>Irony</summary>
+      <div class="body">
+        <p>A gap between expectation and reality. Verbal irony means saying one thing and meaning another. Situational irony means an outcome contradicts what was expected. Dramatic irony means the audience knows something a character does not.</p>
+      </div>
+    </details>
+
+    <details class="element">
+      <summary>Tone and mood</summary>
+      <div class="body">
+        <p>Tone is the writer’s attitude toward the subject, such as tender, mocking, or resigned. Mood is the feeling the text creates in the reader. Good analysis connects specific word choices and sentence rhythms to the tone and mood they produce.</p>
+      </div>
+    </details>
+  </section>
+
+  <section id="example" class="example" aria-labelledby="example-title">
+    <h2 id="example-title">Worked example: The Old Man and the Sea</h2>
+    <p class="example-meta">Ernest Hemingway, 1952. A novella about Santiago, an aging Cuban fisherman, and the marlin he hooks far out in the Gulf Stream.</p>
+
+    <p>Hemingway wrote about his method through what he called the iceberg theory: most of the meaning should sit beneath the surface, supported by the parts a writer chooses to show. An analysis can test that idea by asking what the story leaves unsaid.</p>
+
+    <h3>Step 1: Find a question</h3>
+    <p>Santiago has gone 84 days without catching a fish, and the boy Manolin has been forced to leave him. A good question is: what does Santiago gain from the struggle, if the marlin is lost to sharks by the end?</p>
+
+    <h3>Step 2: Gather evidence</h3>
+    <div class="prep">
+      <div>
+        <h3>Pride and routine</h3>
+        <p>Santiago talks to himself, to the fish, and to the sea. His repeated lines about being “a strange old man” show how he sees himself.</p>
+      </div>
+      <div>
+        <h3>The marlin</h3>
+        <p>He calls the fish his brother and respects it. Respect, not conquest, shapes the way he fights.</p>
+      </div>
+      <div>
+        <h3>Defeat</h3>
+        <p>When the sharks strip the marlin, Santiago measures his loss not in money but in what he has kept of himself.</p>
+      </div>
+    </div>
+
+    <h3>Step 3: Explain the connection</h3>
+    <div class="example">
+      <blockquote>
+        <p><strong>Claim:</strong> Hemingway shows that dignity is measured by how a person endures, not by what the person keeps.</p>
+      </blockquote>
+      <p><strong>Evidence:</strong> The sharks take almost everything from Santiago, yet he returns to shore with the marlin’s skeleton and still feels that he has been defeated only in part.</p>
+      <p><strong>Analysis:</strong> The skeleton functions as a symbol of what remains after loss. Santiago’s exhaustion does not erase his skill or his sense of who he is, which supports the claim that his worth is located in his conduct.</p>
+    </div>
+
+    <p>Notice the structure of this paragraph. The analysis does not stop at saying what happens. It connects a specific image to a larger idea, then explains why that idea matters for the reader.</p>
+  </section>
+
+  <section id="practice" aria-labelledby="practice-title">
+    <h2 id="practice-title">Check your understanding</h2>
+    <p>Answer each question, then press “Check answers.” Feedback appears under each question.</p>
+
+    <form id="quiz" novalidate>
+      <div class="quiz-card">
+        <fieldset>
+          <legend>1. Which element is the central message a text communicates about life?</legend>
+          <label class="choice"><input type="radio" name="q1" value="a"> <span>Setting</span></label>
+          <label class="choice"><input type="radio" name="q1" value="b"> <span>Theme</span></label>
+          <label class="choice"><input type="radio" name="q1" value="c"> <span>Motif</span></label>
+          <p class="feedback" aria-live="polite" id="fb1"></p>
+        </fieldset>
+      </div>
+
+      <div class="quiz-card">
+        <fieldset>
+          <legend>2. A narrator who uses “I” and can only report what they perceive is using which point of view?</legend>
+          <label class="choice"><input type="radio" name="q2" value="a"> <span>Third-person omniscient</span></label>
+          <label class="choice"><input type="radio" name="q2" value="b"> <span>First person</span></label>
+          <label class="choice"><input type="radio" name="q2" value="c"> <span>Second person</span></label>
+          <p class="feedback" aria-live="polite" id="fb2"></p>
+        </fieldset>
+      </div>
+
+      <div class="quiz-card">
+        <fieldset>
+          <legend>3. Hemingway’s “iceberg theory” suggests that the most important meaning in a story is:</legend>
+          <label class="choice"><input type="radio" name="q3" value="a"> <span>Stated directly in the opening paragraph</span></label>
+          <label class="choice"><input type="radio" name="q3" value="b"> <span>Placed beneath the surface and left mostly unstated</span></label>
+          <label class="choice"><input type="radio" name="q3" value="c"> <span>Found only in the dialogue</span></label>
+          <p class="feedback" aria-live="polite" id="fb3"></p>
+        </fieldset>
+      </div>
+
+      <div class="quiz-card">
+        <fieldset>
+          <legend>4. Which statement is the strongest thesis for an essay?</legend>
+          <label class="choice"><input type="radio" name="q4" value="a"> <span>The Old Man and the Sea is a story about fishing.</span></label>
+          <label class="choice"><input type="radio" name="q4" value="b"> <span>Santiago is a fisherman who is old and tired.</span></label>
+          <label class="choice"><input type="radio" name="q4" value="c"> <span>Hemingway uses Santiago’s repeated contact with the sea to argue that dignity lies in endurance.</span></label>
+          <p class="feedback" aria-live="polite" id="fb4"></p>
+        </fieldset>
+      </div>
+
+      <div class="quiz-card">
+        <fieldset>
+          <legend>5. Dramatic irony occurs when:</legend>
+          <label class="choice"><input type="radio" name="q5" value="a"> <span>A character says the opposite of what they mean</span></label>
+          <label class="choice"><input type="radio" name="q5" value="b"> <span>The outcome contradicts what the reader expected</span></label>
+          <label class="choice"><input type="radio" name="q5" value="c"> <span>The audience knows something a character does not</span></label>
+          <p class="feedback" aria-live="polite" id="fb5"></p>
+        </fieldset>
+      </div>
+
+      <div class="btn-row">
+        <button type="button" class="btn-ghost" id="check-btn">Check answers</button>
+        <button type="button" class="btn-ghost" id="reset-btn">Reset quiz</button>
+        <p class="score-line" id="score" aria-live="polite"></p>
+      </div>
+    </form>
+  </section>
+
+  <section id="checklist" aria-labelledby="checklist-title">
+    <h2 id="checklist-title">Analysis checklist</h2>
+    <p>Use this before you submit any analysis. Your progress stays on this page only until you reload it.</p>
+
+    <div class="progress-wrap">
+      <p class="progress-label" id="progress-text">0 of 6 complete</p>
+      <progress id="progress" value="0" max="6" aria-labelledby="progress-text"></progress>
+    </div>
+
+    <ul class="checklist">
+      <li><label><input type="checkbox" class="check-item"><span>My thesis makes an arguable claim, not a plot summary.</span></label></li>
+      <li><label><input type="checkbox" class="check-item"><span>I have at least two pieces of evidence from the text.</span></label></li>
+      <li><label><input type="checkbox" class="check-item"><span>Each piece of evidence is followed by my own analysis.</span></label></li>
+      <li><label><input type="checkbox" class="check-item"><span>I have explained how the element I chose supports my claim.</span></label></li>
+      <li><label><input type="checkbox" class="check-item"><span>I considered a counterpoint and responded to it.</span></label></li>
+      <li><label><input type="checkbox" class="check-item"><span>My conclusion goes beyond restating the thesis.</span></label></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <p>Read Between the Waves is a learning site for literary analysis. Inspired by the adventure and visual style of One Piece. Fonts: Alfa Slab One and Source Serif 4.</p>
+  </div>
+</footer>
+
+<script>
+  // Quiz answer key
+  const answers = { q1: "b", q2: "b", q3: "b", q4: "c", q5: "c" };
+  const messages = {
+    q1: "Theme is the central message. Setting and motif are related but different.",
+    q2: "First person uses “I” and limits the narrator to what they perceive.",
+    q3: "Hemingway wanted most meaning beneath the surface, supported by what is shown.",
+    q4: "This thesis makes an arguable claim and names how the text supports it.",
+    q5: "Dramatic irony depends on what the audience knows compared with a character."
+  };
+  const feedbackIds = { q1: "fb1", q2: "fb2", q3: "fb3", q4: "fb4", q5: "fb5" };
+
+  const scoreEl = document.getElementById("score");
+
+  function checkAnswers() {
+    let correct = 0;
+    Object.keys(answers).forEach(function (q) {
+      const selected = document.querySelector('input[name="' + q + '"]:checked');
+      const fb = document.getElementById(feedbackIds[q]);
+      fb.className = "feedback";
+      if (!selected) {
+        fb.textContent = "No answer selected.";
+        fb.classList.add("incorrect");
+        return;
+      }
+      if (selected.value === answers[q]) {
+        correct++;
+        fb.textContent = "Correct. " + messages[q];
+        fb.classList.add("correct");
+      } else {
+        fb.textContent = "Not quite. " + messages[q];
+        fb.classList.add("incorrect");
+      }
+    });
+    scoreEl.textContent = "Score: " + correct + " of " + Object.keys(answers).length;
+  }
+
+  function resetQuiz() {
+    document.getElementById("quiz").reset();
+    Object.values(feedbackIds).forEach(function (id) {
+      const fb = document.getElementById(id);
+      fb.textContent = "";
+      fb.className = "feedback";
+    });
+    scoreEl.textContent = "";
+  }
+
+  document.getElementById("check-btn").addEventListener("click", checkAnswers);
+  document.getElementById("reset-btn").addEventListener("click", resetQuiz);
+
+  // Checklist progress
+  const items = document.querySelectorAll(".check-item");
+  const progress = document.getElementById("progress");
+  const progressText = document.getElementById("progress-text");
+
+  function updateProgress() {
+    const done = Array.from(items).filter(function (i) { return i.checked; }).length;
+    progress.value = done;
+    progressText.textContent = done + " of " + items.length + " complete";
+  }
+  items.forEach(function (i) { i.addEventListener("change", updateProgress); });
+</script>
+
+</body>
+</html>
